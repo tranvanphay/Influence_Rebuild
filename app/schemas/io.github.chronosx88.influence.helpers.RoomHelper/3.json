@@ -1,0 +1,120 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 3,
+    "identityHash": "b9b5e578f9222b641c833e4ba5e2378c",
+    "entities": [
+      {
+        "tableName": "messages",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`messageID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `chatID` TEXT, `messageUid` TEXT, `senderJid` TEXT, `timestamp` INTEGER NOT NULL, `text` TEXT, `isSent` INTEGER NOT NULL, `isRead` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "messageID",
+            "columnName": "messageID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "chatID",
+            "columnName": "chatID",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "messageUid",
+            "columnName": "messageUid",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "senderJid",
+            "columnName": "senderJid",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isSent",
+            "columnName": "isSent",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isRead",
+            "columnName": "isRead",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "messageID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "chats",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`jid` TEXT NOT NULL, `chatName` TEXT, `users` TEXT, `unreadMessagesCount` INTEGER NOT NULL, `lastMessageUid` TEXT, PRIMARY KEY(`jid`))",
+        "fields": [
+          {
+            "fieldPath": "jid",
+            "columnName": "jid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "chatName",
+            "columnName": "chatName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "users",
+            "columnName": "users",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "unreadMessagesCount",
+            "columnName": "unreadMessagesCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastMessageUid",
+            "columnName": "lastMessageUid",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "jid"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"b9b5e578f9222b641c833e4ba5e2378c\")"
+    ]
+  }
+}
